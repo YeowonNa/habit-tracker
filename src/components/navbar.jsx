@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import '../app.css';
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
   render() {
     return (
       <div className="navbar">
