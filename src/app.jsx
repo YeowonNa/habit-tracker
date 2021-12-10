@@ -1,4 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
+import { useCallback } from 'react';
+import { useState } from 'react';
 import './app.css';
 import Habits from './components/habits';
 import Navbar from './components/navbar';
@@ -16,6 +18,7 @@ const App = () => {
         if (item.id === habit.id) {
           return { ...habit, count: habit.count + 1 };
         }
+        return item;
       })
     );
   }, []);
@@ -27,6 +30,7 @@ const App = () => {
           const count = habit.count - 1;
           return { ...habit, count: count < 0 ? 0 : count };
         }
+        return item;
       })
     );
   }, []);
@@ -48,10 +52,11 @@ const App = () => {
         return habit;
       })
     );
-  });
+  }, []);
+
   return (
     <>
-      <Navbar totalCount={habits.filter((item) => item?.count > 0).length} />
+      <Navbar totalCount={habits.filter((item) => item.count > 0).length} />
       <Habits
         habits={habits}
         onIncrement={handleIncrement}
